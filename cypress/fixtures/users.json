@@ -1,0 +1,32 @@
+{
+  "standard": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "description": "Normal user with full access"
+  },
+  "lockedOut": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "description": "User that is locked out of the application"
+  },
+  "problem": {
+    "username": "problem_user",
+    "password": "secret_sauce",
+    "description": "User that encounters UI glitches"
+  },
+  "performance": {
+    "username": "performance_glitch_user",
+    "password": "secret_sauce",
+    "description": "User that experiences slow responses"
+  },
+  "error": {
+    "username": "error_user",
+    "password": "secret_sauce",
+    "description": "User that encounters errors on actions"
+  },
+  "invalid": {
+    "username": "invalid_user",
+    "password": "wrong_password",
+    "description": "Non existent credentials for negative testing"
+  }
+}
