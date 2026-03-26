@@ -1,6 +1,6 @@
 # SauceDemo Test Automation Framework
 
-![Cypress Tests](https://github.com/YOUR_USERNAME/SauceDemo/actions/workflows/ci.yml/badge.svg)
+![Cypress Tests](https://github.com/raihan38/SauceDemo/actions/workflows/ci.yml/badge.svg)
 
 Test automation framework for [SauceDemo](https://www.saucedemo.com), built with Cypress.
 
