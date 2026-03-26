@@ -56,7 +56,7 @@ Test automation framework for [SauceDemo](https://www.saucedemo.com), built with
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/SauceDemo.git
+git clone https://github.com/raihan38/SauceDemo.git
 cd SauceDemo
 npm install
 ```
