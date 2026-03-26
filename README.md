@@ -6,11 +6,11 @@ Test automation framework for [SauceDemo](https://www.saucedemo.com), built with
 
 ## Why Cypress
 
-- Built-in retry-ability — no manual wait logic, no `Thread.sleep`. Handles `performance_glitch_user` requirement out of the box
-- Auto screenshots on failure — attaches to mochawesome report without extra plugins
-- One install, everything included — test runner, assertion library, browser automation. No WebDriver binary management
+- Built-in retry-ability : no manual wait logic, no `Thread.sleep`. Handles `performance_glitch_user` requirement out of the box
+- Auto screenshots on failure : attaches to mochawesome report without extra plugins
+- One install, everything included : test runner, assertion library, browser automation. No WebDriver binary management
 - `cypress-io/github-action` makes CI setup trivial
-- Time-travel debugging — snapshots every command, step through failures visually
+- Time-travel debugging : snapshots every command, step through failures visually
 
 **Trade-offs:** No Safari/IE support. Can't do multi-tab or multi-domain natively. Playwright would be the pick if cross-browser was a hard requirement.
 
@@ -45,13 +45,13 @@ Test automation framework for [SauceDemo](https://www.saucedemo.com), built with
 
 ## Design Decisions
 
-**Page Object Model** — one class per page. Selectors are getter properties, actions are methods, assertions are methods. Test files never touch raw selectors. Selector changes = one file edit, not twenty.
+**Page Object Model** : one class per page. Selectors are getter properties, actions are methods, assertions are methods. Test files never touch raw selectors. Selector changes = one file edit, not twenty.
 
-**Custom Commands** — `cy.loginAsStandardUser()`, `cy.addToCart()`, `cy.assertCartCount()` live in `commands.js`. Login happens in nearly every test — defined once, used everywhere.
+**Custom Commands** : `cy.loginAsStandardUser()`, `cy.addToCart()`, `cy.assertCartCount()` live in `commands.js`. Login happens in nearly every test defined once, used everywhere.
 
-**Fixtures for all test data** — credentials in `users.json`, product info in `products.json`, checkout data in `checkout.json`. Zero hardcoded values in spec files.
+**Fixtures for all test data** : credentials in `users.json`, product info in `products.json`, checkout data in `checkout.json`. Zero hardcoded values in spec files.
 
-**Config externalization** — `cypress.config.js` reads `BASE_URL` from env vars with defaults. Point at staging or production without code changes.
+**Config externalization** : `cypress.config.js` reads `BASE_URL` from env vars with defaults. Point at staging or production without code changes.
 
 ## Setup
 
@@ -103,17 +103,17 @@ GitHub Actions workflow triggers on push and PR to `main`.
 
 ## Flakiness Handling
 
-- `retries: { runMode: 1 }` — auto-retry once before marking failed
-- `Cypress.on('uncaught:exception')` — suppresses SauceDemo's app-level React errors that aren't test-relevant
+- `retries: { runMode: 1 }` : auto-retry once before marking failed
+- `Cypress.on('uncaught:exception')` : suppresses SauceDemo's app-level React errors that aren't test-relevant
 - `performance_glitch_user` tests rely on Cypress retry-ability, not hardcoded waits
-- `pageLoadTimeout: 60000` — accommodates SauceDemo's inconsistent response times
+- `pageLoadTimeout: 60000` : accommodates SauceDemo's inconsistent response times
 
 ## What I'd Add With More Time
 
-- **API-layer setup** — `cy.request()` for login and test data seeding instead of UI clicks. Faster, less flaky
-- **Visual regression** — Percy or Cypress snapshots for `problem_user` pixel-level comparison
-- **Parallel execution** — `cypress-split` or Cypress Cloud to cut pipeline time
-- **Docker** — consistent environments across local and CI
-- **Accessibility** — `cypress-axe` for WCAG checks per page
-- **Cross-browser** — Firefox and Edge in CI matrix
-- **Test tagging** — `@smoke` / `@regression` / `@critical` to run subsets based on riskgit 
+- **API-layer setup** : `cy.request()` for login and test data seeding instead of UI clicks. Faster, less flaky
+- **Visual regression** : Percy or Cypress snapshots for `problem_user` pixel-level comparison
+- **Parallel execution** : `cypress-split` or Cypress Cloud to cut pipeline time
+- **Docker** : consistent environments across local and CI
+- **Accessibility** : `cypress-axe` for WCAG checks per page
+- **Cross-browser** : Firefox and Edge in CI matrix
+- **Test tagging** : `@smoke` / `@regression` / `@critical` to run subsets based on riskgit 
