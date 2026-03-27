@@ -69,7 +69,7 @@ describe('Checkout Flow', () => {
       CheckoutPage.assertOnStepOne();
     });
 
-    it('should show error when first name is missing', () => {
+    it('TC-Chk-01 should show error when first name is missing', () => {
       cy.fixture('checkout').then((checkout) => {
         CheckoutPage.fillCheckoutInfo(
           null,
@@ -81,7 +81,7 @@ describe('Checkout Flow', () => {
       });
     });
 
-    it('should show error when last name is missing', () => {
+    it('TC-Chk-02 should show error when last name is missing', () => {
       cy.fixture('checkout').then((checkout) => {
         CheckoutPage.fillCheckoutInfo(
           checkout.missingLastName.firstName,
@@ -93,7 +93,7 @@ describe('Checkout Flow', () => {
       });
     });
 
-    it('should show error when postal code is missing', () => {
+    it('TC-Chk-03 should show error when postal code is missing', () => {
       cy.fixture('checkout').then((checkout) => {
         CheckoutPage.fillCheckoutInfo(
           checkout.missingPostalCode.firstName,
@@ -107,7 +107,7 @@ describe('Checkout Flow', () => {
   });
 
   describe('Order summary — math verification', () => {
-    it('should have item subtotal + tax equal to total', () => {
+    it('TC-Chk-04 should have item subtotal + tax equal to total', () => {
       cy.fixture('checkout').then((checkout) => {
         // Add multiple items for a more meaningful math check
         InventoryPage.addItemToCartByIndex(0);
@@ -128,7 +128,7 @@ describe('Checkout Flow', () => {
       });
     });
 
-    it('should display correct number of items in order summary', () => {
+    it('TC-Chk-05 should display correct number of items in order summary', () => {
       cy.fixture('checkout').then((checkout) => {
         InventoryPage.addItemToCartByIndex(0);
         InventoryPage.addItemToCartByIndex(1);

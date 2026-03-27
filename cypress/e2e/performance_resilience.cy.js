@@ -22,7 +22,7 @@ describe('Performance & Resilience', () => {
       });
     });
 
-    it('should load inventory page with all products despite delay', () => {
+    it('TC-Perf-01 should load inventory page with all products despite delay', () => {
       cy.fixture('users').then((users) => {
         cy.login(users.performance.username, users.performance.password);
 
@@ -41,7 +41,7 @@ describe('Performance & Resilience', () => {
       InventoryPage.assertOnInventoryPage();
     }); 
 
-    it('should encounter error when adding item to cart', () => {
+    it('TC-Perf-02 should encounter error when adding item to cart', () => {
       // error_user triggers errors on certain actions
       // Attempt to add an item and assert the error state
       cy.fixture('products').then((products) => {
@@ -62,7 +62,7 @@ describe('Performance & Resilience', () => {
       });
     });
 
-    it('should encounter error during checkout process', () => {
+    it('TC-Perf-03 should encounter error during checkout process', () => {
       cy.fixture('checkout').then((checkout) => {
         // Add item
         InventoryPage.addItemToCartByIndex(0);
@@ -101,7 +101,7 @@ describe('Performance & Resilience', () => {
       });
     });
 
-    it('should encounter error when sorting products', () => {
+    it('TC-Perf-04 should encounter error when sorting products', () => {
       // error_user triggers errors on sorting
       cy.fixture('products').then((products) => {
         InventoryPage.sortBy(products.sortOptions.nameAsc);
@@ -119,7 +119,7 @@ describe('Performance & Resilience', () => {
       });
     });
 
-    it('should encounter error when removing item from cart', () => {
+    it('TC-Perf-05 should encounter error when removing item from cart', () => {
       cy.fixture('products').then((products) => {
         const product = products.knownProducts[0];
 

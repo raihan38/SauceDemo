@@ -7,13 +7,13 @@ describe('Product Catalog', () => {
   });
 
   describe('Product listing', () => {
-    it('should display the correct number of products', () => {
+    it('TC-PCat-01 should display the correct number of products', () => {
       cy.fixture('products').then((products) => {
         InventoryPage.assertItemCount(products.expectedCount);
       });
     });
 
-    it('should display name, price, and image for every product', () => {
+    it('TC-PCat-02 should display name, price, and image for every product', () => {
       InventoryPage.assertAllItemsHaveNameAndPrice();
 
       cy.get('.inventory_item_img img').each(($img) => {
@@ -26,7 +26,7 @@ describe('Product Catalog', () => {
   });
 
   describe('Sorting', () => {
-    it('should sort products by Name A to Z', () => {
+    it('TC-PCat-03 should sort products by Name A to Z', () => {
       cy.fixture('products').then((products) => {
         InventoryPage.sortBy(products.sortOptions.nameAsc);
 
@@ -37,7 +37,7 @@ describe('Product Catalog', () => {
       });
     });
 
-    it('should sort products by Name Z to A', () => {
+    it('TC-PCat-04 should sort products by Name Z to A', () => {
       cy.fixture('products').then((products) => {
         InventoryPage.sortBy(products.sortOptions.nameDesc);
 
@@ -48,7 +48,7 @@ describe('Product Catalog', () => {
       });
     });
 
-    it('should sort products by Price Low to High', () => {
+    it('TC-PCat-05 should sort products by Price Low to High', () => {
       cy.fixture('products').then((products) => {
         InventoryPage.sortBy(products.sortOptions.priceLowHigh);
 
@@ -59,7 +59,7 @@ describe('Product Catalog', () => {
       });
     });
 
-    it('should sort products by Price High to Low', () => {
+    it('TC-PCat-06 should sort products by Price High to Low', () => {
       cy.fixture('products').then((products) => {
         InventoryPage.sortBy(products.sortOptions.priceHighLow);
 
@@ -72,7 +72,7 @@ describe('Product Catalog', () => {
   });
 
   describe('problem_user — visual regression', () => {
-    it('should detect broken or mismatched product images', () => {
+    it('TC-PCat-07 should detect broken or mismatched product images', () => {
       // Logout and login as problem_user
       InventoryPage.logout();
 

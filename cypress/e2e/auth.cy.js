@@ -7,7 +7,7 @@ describe('Authentication', () => {
   });
 
   context('Successful login', () => {
-    it('should login with valid standard user credentials', () => {
+    it('TC-Auth-01 should login with valid standard user credentials', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.standard.username, users.standard.password);
         InventoryPage.assertOnInventoryPage();
@@ -16,7 +16,7 @@ describe('Authentication', () => {
   });
 
   describe('Login failure invalid credentials', () => {
-    it('should show error for incorrect password', () => {
+    it('TC-Auth-02 should show error for incorrect password', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.standard.username, 'wrong_password');
         LoginPage.assertErrorVisible(
@@ -25,7 +25,7 @@ describe('Authentication', () => {
       });
     });
 
-    it('should show error for non-existent username', () => {
+    it('TC-Auth-03 should show error for non-existent username', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.invalid.username, users.invalid.password);
         LoginPage.assertErrorVisible(
@@ -34,24 +34,24 @@ describe('Authentication', () => {
       });
     });
 
-    it('should show error when username is empty', () => {
+    it('TC-Auth-04 should show error when username is empty', () => {
       LoginPage.submitWithPasswordOnly('secret_sauce');
       LoginPage.assertErrorVisible('Epic sadface: Username is required');
     });
 
-    it('should show error when password is empty', () => {
+    it('TC-Auth-05 should show error when password is empty', () => {
       cy.fixture('users').then((users) => {
         LoginPage.submitWithUsernameOnly(users.standard.username);
         LoginPage.assertErrorVisible('Epic sadface: Password is required');
       });
     });
 
-    it('should show error when both fields are empty', () => {
+    it('TC-Auth-06 should show error when both fields are empty', () => {
       LoginPage.submitEmpty();
       LoginPage.assertErrorVisible('Epic sadface: Username is required');
     });
 
-    it('should handle SQL injection attempt in username field', () => {
+    it('TC-Auth-07 should handle SQL injection attempt in username field', () => {
       LoginPage.login("' OR '1'='1", 'secret_sauce');
       LoginPage.assertErrorVisible(
         'Epic sadface: Username and password do not match any user in this service'
@@ -60,7 +60,7 @@ describe('Authentication', () => {
   });
 
   describe('Locked out user', () => {
-    it('should show locked out error message', () => {
+    it('TC-Auth-08 should show locked out error message', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.lockedOut.username, users.lockedOut.password);
         LoginPage.assertErrorVisible(
@@ -71,7 +71,7 @@ describe('Authentication', () => {
   });
 
   describe('Session persistence and logout', () => {
-    it('should logout successfully and redirect to login page', () => {
+    it('TC-Auth-09 should logout successfully and redirect to login page', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.standard.username, users.standard.password);
         InventoryPage.assertOnInventoryPage();
@@ -80,7 +80,7 @@ describe('Authentication', () => {
       });
     });
 
-    it('should not allow access to inventory page after logout', () => {
+    it('TC-Auth-10 should not allow access to inventory page after logout', () => {
       cy.fixture('users').then((users) => {
         LoginPage.login(users.standard.username, users.standard.password);
         InventoryPage.assertOnInventoryPage();

@@ -8,19 +8,19 @@ describe('Shopping Cart', () => {
   });
 
   context('Adding items', () => {
-    it('should update cart badge to 1 when adding a single item', () => {
+    it('TC-Cart-01 should update cart badge to 1 when adding a single item', () => {
       InventoryPage.addItemToCartByIndex(0);
       InventoryPage.assertCartBadge(1);
     });
 
-    it('should update cart badge to 3 when adding multiple items', () => {
+    it('TC-Cart-02 should update cart badge to 3 when adding multiple items', () => {
       InventoryPage.addItemToCartByIndex(0);
       InventoryPage.addItemToCartByIndex(1);
       InventoryPage.addItemToCartByIndex(2);
       InventoryPage.assertCartBadge(3);
     });
 
-    it('should show all added items in the cart page', () => {
+    it('TC-Cart-03 should show all added items in the cart page', () => {
       cy.fixture('products').then((products) => {
         const itemsToAdd = products.knownProducts.slice(0, 3);
 
@@ -40,7 +40,7 @@ describe('Shopping Cart', () => {
   });
 
   context('Removing items', () => {
-    it('should remove an item from cart and update badge', () => {
+    it('TC-Cart-04 should remove an item from cart and update badge', () => {
       cy.fixture('products').then((products) => {
         const firstProduct = products.knownProducts[0];
         const secondProduct = products.knownProducts[1];
@@ -59,7 +59,7 @@ describe('Shopping Cart', () => {
       });
     });
 
-    it('should remove cart badge when all items are removed', () => {
+    it('TC-Cart-05 should remove cart badge when all items are removed', () => {
       InventoryPage.addItemToCartByIndex(0);
       InventoryPage.assertCartBadge(1);
 
@@ -72,7 +72,7 @@ describe('Shopping Cart', () => {
   });
 
   context('Cart persistence', () => {
-    it('should persist cart items after navigating away and back', () => {
+    it('TC-Cart-06 should persist cart items after navigating away and back', () => {
       cy.fixture('products').then((products) => {
         const product = products.knownProducts[0];
 
@@ -97,7 +97,7 @@ describe('Shopping Cart', () => {
   });
 
   context('Price consistency', () => {
-    it('should show matching names and prices between inventory and cart', () => {
+    it('TC-Cart-07 should show matching names and prices between inventory and cart', () => {
       cy.fixture('products').then((products) => {
         const product = products.knownProducts[0]; // Sauce Labs Backpack
 
